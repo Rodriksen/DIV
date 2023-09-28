@@ -1,10 +1,10 @@
-import requests
 from bs4 import BeautifulSoup
+import requests
 import lxml
 import re
 
 
-URL_WIKIE = "https://es.wikipedia.com/"
+URL_WIKIE = "https://housinganywhere.com/Spain/average-salary-spain"
 
 def getTitle(URL):
     r = requests.get(URL)
