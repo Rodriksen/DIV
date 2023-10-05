@@ -1,0 +1,16 @@
+{
+    "COD": "ECP131362",
+    "Nombre": "Total. 0 a\u00f1os. Albacete. Poblaci\u00f3n. N\u00famero. ",
+    "FK_Unidad": 3,
+    "FK_Escala": 1,
+    "Data": [
+        {
+            "Fecha": 1672527600000,
+            "FK_TipoDato": 2,
+            "FK_Periodo": 19,
+            "Anyo": 2023,
+            "Valor": 2750.0,
+            "Secreto": false
+        }
+    ]
+}

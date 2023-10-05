@@ -15,21 +15,25 @@ def fetch_data_from_api(api_url):
         print("Request failed with status code {response.status_code}")
         return None
 
+def createJson(file_path, data):
+    try:
+        with open(file_path, 'w') as json_file:
+            json.dump(data, json_file, indent=4)
+        print(f'Data has been successfully written to {file_path}')
+    except Exception as e:
+        print(f'An error occurred: {str(e)}')
 
-file_path = "ipv.json"
+
+api_ipv = fetch_data_from_api("https://servicios.ine.es/wstempus/js/ES/DATOS_SERIE/IPV729?date=:")
+createJson("ipv.json", api_ipv)
+
+createPath = ""
+for i in range(1,52):
+    for j in range(1,35):
+        series = "Aaaa" # Esto hay que cambiarlo para que lea las series del txt
+        createPath = "https://servicios.ine.es/wstempus/js/ES/DATOS_SERIE/" + series + "?date=20230101:20230106"
 
 
-
-api_ipv = fetch_data_from_api("https://servicios.ine.es/wstempus/js/ES/DATOS_TABLA/25171?date=20000901:20230928")
-
-# Write the data to the JSON file
-try:
-    with open(file_path, 'w') as json_file:
-        json.dump(api_ipv, json_file, indent=4)
-    print(f'Data has been successfully written to {file_path}')
-except Exception as e:
-    print(f'An error occurred: {str(e)}')
-
-api_edad = fetch_data_from_api("https://servicios.ine.es/wstempus/js/ES/VALORES_VARIABLE/116?page=1")
-
-parsed_edad = json.loads(api_edad)
+api_edad = fetch_data_from_api("https://servicios.ine.es/wstempus/js/ES/DATOS_SERIE/ECP131362?date=20230101:20230106")
+createJson("edad.json", api_edad)
+# Para arreglar esto hay que meter muchísimas series del INE
