@@ -28,12 +28,17 @@ api_ipv = fetch_data_from_api("https://servicios.ine.es/wstempus/js/ES/DATOS_SER
 createJson("ipv.json", api_ipv)
 
 createPath = ""
+ageDict = dict()
+prov = open("provincias.txt", "r")
+series = open("seriesINE.txt", "r")
 for i in range(1,52):
+    provName = prov.readline()
+    ageVector = []
     for j in range(1,35):
-        series = "Aaaa" # Esto hay que cambiarlo para que lea las series del txt
+        series = series.readline(9)
         createPath = "https://servicios.ine.es/wstempus/js/ES/DATOS_SERIE/" + series + "?date=20230101:20230106"
+        api_edad = fetch_data_from_api(createPath)
+        ageValDict = json.loads(api_edad)
+        ageValue = ageValDict["Valor"]
+        ageVector.append(ageValue)
 
-
-api_edad = fetch_data_from_api("https://servicios.ine.es/wstempus/js/ES/DATOS_SERIE/ECP131362?date=20230101:20230106")
-createJson("edad.json", api_edad)
-# Para arreglar esto hay que meter muchísimas series del INE
